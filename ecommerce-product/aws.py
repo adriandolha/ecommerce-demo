@@ -23,4 +23,6 @@ def api_context(event, context):
 
 
 def list(event, context=None):
+    print(event)
+    print(context)
     return response(ProductApi(api_context(event, context)).list())
