@@ -1,5 +1,5 @@
-from ecommerce_product.domain import Product
+from ecommerce_shoppingcart.domain import ShoppingCart
 
 
-def make_product(**kwargs):
-    return Product(**kwargs)
+def make_shoppingcart(**kwargs):
+    return ShoppingCart(**kwargs)

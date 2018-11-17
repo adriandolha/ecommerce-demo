@@ -1,14 +1,10 @@
-class Product:
-    def __init__(self, product_id, name, category, price):
-        self.product_id = product_id
-        self.name = name
-        self.category = category
-        self.price = price
+class ShoppingCart:
+    def __init__(self, items, user_id=1):
+        self.user_id = user_id
+        self.items = items
 
     def to_json(self):
         return {
-            'product_id': self.product_id,
-            'name': self.name,
-            'category': self.category,
-            'price': self.price
+            'user_id':self.user_id,
+            'items': self.items,
         }

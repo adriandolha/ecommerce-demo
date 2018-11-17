@@ -8,7 +8,7 @@ set -e
 
 # variables
 LAMDAFUN="https://github.com/adriandolha/ecommerce-demo.git"
-LAMDADEST="ecommerce-product"
+LAMDADEST="ecommerce-shoppingcart"
 ARCHIVENAME="lambda_package"
 BRANCH="${1-master}"
 BUILD_DIR="/tmp/lambdabuild"
@@ -22,7 +22,7 @@ rm -fr ${BUILD_DIR} && mkdir ${BUILD_DIR} && mkdir ${BUILD_DIR}/ecommerce-demo
 
 printf "%b⚓cloning repo...%b\n" "$green" "$default"
 git clone -b "${BRANCH}" --single-branch ${LAMDAFUN} ${BUILD_DIR}/ecommerce-demo --depth 1
-BUILDIR="${BUILD_DIR}/ecommerce-demo/ecommerce-product"
+BUILDIR="${BUILD_DIR}/ecommerce-demo/ecommerce-shoppingcart"
 # create a temporary virtualenv
 python3 -m venv ${BUILDIR}/virtualenv
 
@@ -33,13 +33,13 @@ source ${BUILDIR}/virtualenv/bin/activate
 printf "%b⚓installing the dependencies in the virtualenv...%b\n" "${green}" "${default}"
 
 
-#INSTALL ecommerce-product
-mkdir -p ${BUILDIR}/ecommerce-product/lambda_package
+#INSTALL ecommerce-shoppingcart
+mkdir -p ${BUILDIR}/ecommerce-shoppingcart/lambda_package
 pip install -q ${BUILDIR} -U -t $BUILDIR/lambda_package
 pip install -q ${BUILDIR}/ -U -r ${BUILDIR}/aws_requirements.txt -t ${BUILDIR}/lambda_package
 
     # sync files
-rsync -aP  ${BUILDIR}/ecommerce_product/ ${BUILDIR}/lambda_package/
+rsync -aP  ${BUILDIR}/ecommerce_shoppingcart/ ${BUILDIR}/lambda_package/
 rsync -aP  ${BUILDIR}/*.py ${BUILDIR}/lambda_package/
 
     #CREATE ARCHIVE

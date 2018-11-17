@@ -1,9 +1,9 @@
 import json
 from functools import wraps
 
-from ecommerce_product import make_product
-from ecommerce_product.serializers import to_json, from_json
-from ecommerce_product.service import ProductService
+from ecommerce_shoppingcart import make_shoppingcart
+from ecommerce_shoppingcart.serializers import to_json, from_json
+from ecommerce_shoppingcart.service import ShoppingCartService
 
 
 def response(message, status_code):
@@ -34,14 +34,14 @@ def handle_request():
     return decorator
 
 
-class ProductApi:
+class ShoppingCartApi:
     def __init__(self, context):
         self.context = context
 
     @handle_request()
     def list(self):
-        return [product.to_json() for product in ProductService().list()]
+        return [shoppingcart.to_json() for shoppingcart in ShoppingCartService().list()]
 
     @handle_request()
-    def add(self, product):
-        return ProductService().add(make_product(**product))
+    def add(self, shoppingcart):
+        return ShoppingCartService().add(make_shoppingcart(**shoppingcart))

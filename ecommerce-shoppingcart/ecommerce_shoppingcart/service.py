@@ -1,12 +1,12 @@
-from ecommerce_product.repo import ProductRepo
+from ecommerce_shoppingcart.repo import ShoppingCartRepo
 
 
-class ProductService:
+class ShoppingCartService:
     def __init__(self):
-        self.repo = ProductRepo()
+        self.repo = ShoppingCartRepo()
 
     def list(self):
         return self.repo.list()
 
-    def add(self, product):
-        self.repo.save(product)
+    def add(self, shoppingcart):
+        self.repo.save(shoppingcart)

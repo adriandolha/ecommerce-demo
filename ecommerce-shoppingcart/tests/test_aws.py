@@ -3,13 +3,13 @@ import json
 import boto3
 
 import aws
-from ecommerce_product.api import ProductApi
+from ecommerce_shoppingcart.api import ShoppingCartApi
 
 
-class TestProductApi:
-    def test_product_list(self, product_valid):
-        boto3.resource('dynamodb').Table('products').scan.return_value = {'Items': [product_valid]}
+class TestShoppingCartApi:
+    def test_shoppingcart_list(self, shoppingcart_valid):
+        boto3.resource('dynamodb').Table('shoppingcarts').scan.return_value = {'Items': [shoppingcart_valid]}
         response = aws.list({})
-        products = json.loads(response['body'])
-        assert 1 == len(products)
+        shoppingcarts = json.loads(response['body'])
+        assert 1 == len(shoppingcarts)
         assert '200' == response['statusCode']

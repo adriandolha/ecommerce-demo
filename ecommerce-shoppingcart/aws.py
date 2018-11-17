@@ -1,6 +1,6 @@
 import uuid
 
-from ecommerce_product.api import ProductApi
+from ecommerce_shoppingcart.api import ShoppingCartApi
 
 
 def response(api_response):
@@ -25,4 +25,4 @@ def api_context(event, context):
 def list(event, context=None):
     print(event)
     print(context)
-    return response(ProductApi(api_context(event, context)).list())
+    return response(ShoppingCartApi(api_context(event, context)).list())
