@@ -1,4 +1,5 @@
 .idea
 .terraform
 venv
-lambda_package_*
+lambda_package.zip
+.pytest_cache
