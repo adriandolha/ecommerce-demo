@@ -44,4 +44,4 @@ rsync -aP  ${BUILDIR}/*.py ${BUILDIR}/lambda_package/
 
     #CREATE ARCHIVE
 ( cd ${BUILDIR}/lambda_package && zip -q -r9 ${BUILDIR}/${ARCHIVENAME}.zip . )
-cp ${BUILDIR}/${ARCHIVENAME}.zip ./${ARCHIVENAME}_ecommerce_product.zip
+cp ${BUILDIR}/${ARCHIVENAME}.zip ./${ARCHIVENAME}.zip
