@@ -13,7 +13,7 @@ resource "aws_dynamodb_table" "orders_dynamo_table" {
   read_capacity = 5
   write_capacity = 5
   hash_key = "order_id"
-  sort_key = "user_id"
+  range_key = "user_id"
 
   attribute {
     name = "order_id"
