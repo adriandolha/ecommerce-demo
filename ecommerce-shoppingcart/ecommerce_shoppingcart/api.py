@@ -43,5 +43,7 @@ class ShoppingCartApi:
         return [shoppingcart.to_json() for shoppingcart in ShoppingCartService().list()]
 
     @handle_request()
-    def add(self, shoppingcart):
-        return ShoppingCartService().add(make_shoppingcart(**shoppingcart))
+    def add(self):
+        shoopingcart = from_json(self.context['body'])
+        print(f'Saving shopping cart {shoopingcart}')
+        return ShoppingCartService().add(make_shoppingcart(**shoopingcart))

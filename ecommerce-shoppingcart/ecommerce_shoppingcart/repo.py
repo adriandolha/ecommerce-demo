@@ -1,5 +1,3 @@
-import uuid
-
 import boto3
 
 from ecommerce_shoppingcart import make_shoppingcart
@@ -14,8 +12,8 @@ class ShoppingCartRepo:
 
     def save(self, shoppingcart: ShoppingCart):
         print(f'Saving shoppingcart {shoppingcart.to_json()}')
-        if not shoppingcart.shoppingcart_id:
-            shoppingcart.shoppingcart_id = str(uuid.uuid4())
+        if not shoppingcart.user_id:
+            shoppingcart.user_id = '1'
         self.table.put_item(Item=shoppingcart.to_json())
 
     def list(self):

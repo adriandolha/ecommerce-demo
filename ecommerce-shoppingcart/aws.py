@@ -26,3 +26,9 @@ def list(event, context=None):
     print(event)
     print(context)
     return response(ShoppingCartApi(api_context(event, context)).list())
+
+
+def add(event, context=None):
+    print(event)
+    print(context)
+    return response(ShoppingCartApi(api_context(event, context)).add())

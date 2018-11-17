@@ -10,3 +10,4 @@ class ShoppingCartService:
 
     def add(self, shoppingcart):
         self.repo.save(shoppingcart)
+        return shoppingcart.to_json()
