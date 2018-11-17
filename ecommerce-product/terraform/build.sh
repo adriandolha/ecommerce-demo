@@ -36,7 +36,7 @@ printf "%b⚓installing the dependencies in the virtualenv...%b\n" "${green}" "$
 #INSTALL ecommerce-product
 mkdir -p ${BUILDIR}/ecommerce-product/lambda_package
 pip install -q ${BUILDIR} -U -t $BUILDIR/lambda_package
-pip install -q ${BUILDIR}/ -U -r ${BUILDIR}/requirements.txt -t ${BUILDIR}/lambda_package
+pip install -q ${BUILDIR}/ -U -r ${BUILDIR}/aws_requirements.txt -t ${BUILDIR}/lambda_package
 
     # sync files
 rsync -aP  ${BUILDIR}/ecommerce_product/ ${BUILDIR}/lambda_package/
