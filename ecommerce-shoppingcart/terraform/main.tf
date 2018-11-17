@@ -26,11 +26,11 @@ resource "aws_dynamodb_table" "shoppingcarts_dynamo_table" {
 
 
 resource "aws_lambda_function" "list_shoppingcart_lambda" {
-  filename = "${pathexpand("lambda_packag.zip")}"
+  filename = "${pathexpand("lambda_package.zip")}"
   function_name = "shoppingcarts_list"
   role = "arn:aws:iam::103050589342:role/iam_for_lambda"
   handler = "aws.list"
-  source_code_hash = "${base64sha256(file(pathexpand("lambda_packag.zip")))}"
+  source_code_hash = "${base64sha256(file(pathexpand("lambda_package.zip")))}"
   runtime = "python3.6"
   timeout = 15
 }
