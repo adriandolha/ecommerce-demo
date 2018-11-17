@@ -4,6 +4,9 @@ from ecommerce_product.service import ProductService
 
 
 class ProductApi:
+    def __init__(self, context):
+        self.context = context
+
     def list(self):
         return to_json([product.to_json() for product in ProductService().list()])
 
