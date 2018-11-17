@@ -15,6 +15,7 @@ class ShoppingCartRepo:
         if not shoppingcart.user_id:
             shoppingcart.user_id = '1'
         self.table.put_item(Item=shoppingcart.to_json())
+        print(f'Saved shoppingcart {shoppingcart.to_json()}')
 
     def list(self):
         return [make_shoppingcart(**item) for item in self.table.scan()['Items']]

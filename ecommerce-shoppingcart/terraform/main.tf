@@ -90,7 +90,7 @@ resource "aws_api_gateway_integration" "shoppingcart_api_integration_add" {
   http_method = "${aws_api_gateway_method.add_shoppingcarts.http_method}"
   integration_http_method = "POST"
   type = "AWS_PROXY"
-  uri = "${aws_lambda_function.list_shoppingcart_lambda.invoke_arn}"
+  uri = "${aws_lambda_function.add_shoppingcart_lambda.invoke_arn}"
 
 }
 
