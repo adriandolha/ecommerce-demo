@@ -132,11 +132,11 @@ EOF
 }
 
 resource "aws_lambda_function" "list_product_lambda" {
-  filename = "${pathexpand("lambda_package_product.zip")}"
+  filename = "${pathexpand("lambda_package_ecommerce_product.zip")}"
   function_name = "products_list"
   role = "${aws_iam_role.iam_for_lambda.arn}"
   handler = "aws.list"
-  source_code_hash = "${base64sha256(file(pathexpand("lambda_package_product.zip")))}"
+  source_code_hash = "${base64sha256(file(pathexpand("lambda_package_ecommerce_product.zip")))}"
   runtime = "python3.6"
   timeout = 15
 }
