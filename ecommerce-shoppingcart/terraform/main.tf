@@ -104,10 +104,18 @@ resource "aws_api_gateway_deployment" "shoppingcart_api_deployment" {
 }
 
 
-resource "aws_lambda_permission" "apigw_lambda_permission_add" {
+resource "aws_lambda_permission" "apigw_lambda_permission_list" {
   statement_id = "AllowExecutionFromAPIGateway"
   action = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.list_shoppingcart_lambda.arn}"
+  principal = "apigateway.amazonaws.com"
+  source_arn = "${aws_api_gateway_rest_api.shoppingcart_api.execution_arn}/*/*/*"
+}
+
+resource "aws_lambda_permission" "apigw_lambda_permission_add" {
+  statement_id = "AllowExecutionFromAPIGateway"
+  action = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.add_shoppingcart_lambda.arn}"
   principal = "apigateway.amazonaws.com"
   source_arn = "${aws_api_gateway_rest_api.shoppingcart_api.execution_arn}/*/*/*"
 }
