@@ -19,6 +19,5 @@ class TestOrderApi:
         assert '1' in from_json(response['body'])['user_id']
         assert '200' == response['statusCode']
 
-    def test_order_created(self, order_valid):
-        response = aws.order_created({'body': to_json(order_valid)})
-        assert '200' == response['statusCode']
+    def test_order_created(self, order_created_event):
+        aws.order_created(order_created_event)

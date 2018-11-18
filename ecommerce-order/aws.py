@@ -37,4 +37,30 @@ def add(event, context=None):
 def order_created(event, context=None):
     print(event)
     print(context)
-    return response(OrderApi(api_context(event, context)).order_created())
+    OrderApi(order_created_context(event)).order_created()
+
+
+def order_created_context(event):
+    if not event:
+        return {}
+
+    item = event['Records'][0]['dynamodb'].get('NewImage') or event['Records'][0]['dynamodb'].get('OldImage')
+    return {
+        'event_name': event['Records'][0]['eventName'],
+        'order': {
+            'user_id': item['user_id']['S'],
+            'order_id': item['order_id']['S'],
+            'items': [extract_item(order_item) for order_item in item['items']['L']],
+        }
+    }
+
+
+def extract_item(order_item):
+    """
+    Excludes 'S' and 'M' keys, for one level
+    Need to be improved, for parameters with map values
+    :param order_item: dict
+    :return: dict
+    """
+    print(f'Extracting order item from event item {order_item}')
+    return {k: [val for key, val in enumerate(v.values())][0] for k, v in order_item['M'].items()}

@@ -47,8 +47,9 @@ class OrderApi:
         print(f'Saving order {order}')
         return OrderService().add(make_order(**order))
 
-    @handle_request()
     def order_created(self):
-        order = from_json(self.context['body'])
+        order = self.context['order']
         print(f'Order created {order}')
-        return 'ok'  # OrderService().update(make_order(**order))
+        order = make_order(**order)
+        order.status = 'COMPLETED'
+        OrderService().add(order)

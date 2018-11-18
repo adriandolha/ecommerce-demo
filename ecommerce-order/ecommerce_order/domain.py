@@ -5,8 +5,8 @@ class Order:
         self.user_id = user_id
         self.items = items
         for item in items:
-            item['total'] = item['price'] * item['count']
-        self.total = sum([item['price'] * item['count'] for item in items])
+            item['total'] = int(item['price']) * int(item['count'])
+        self.total = sum([int(item['price']) * int(item['count']) for item in items])
 
     def to_json(self):
         return {
