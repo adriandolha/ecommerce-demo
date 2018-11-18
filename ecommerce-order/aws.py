@@ -1,7 +1,8 @@
 import uuid
 
 from ecommerce_order.api import OrderApi
-
+import logging
+LOGGER = logging.getLogger('ecommerce')
 
 def response(api_response):
     return {
@@ -37,7 +38,11 @@ def add(event, context=None):
 def order_created(event, context=None):
     print(event)
     print(context)
-    OrderApi(order_created_context(event)).order_created()
+    try:
+        OrderApi(order_created_context(event)).order_created()
+    except KeyError as e:
+        print('Error updating order.')
+        LOGGER.error(e)
 
 
 def order_created_context(event):
