@@ -6,12 +6,13 @@ E-Commerce application demo. The application enables users to buy products onlin
 - place order
 - view order status
 ## Install
-The application is deployed using terraform. It was tested on Ubuntu 18.4
+The application is deployed using terraform. It was tested on Ubuntu 18.4.
+
 Run the following command inside terraform folders:
 ```
 ./deploy.sh apply master dev
 ```
-## Running the Application
+## Testing the Application
 Now that the REST API is up and running we can test it.
 ### Get Products
 GET /products
