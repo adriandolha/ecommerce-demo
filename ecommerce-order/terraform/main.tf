@@ -35,7 +35,7 @@ resource "aws_lambda_function" "list_order_lambda" {
   function_name = "orders_list"
   role = "arn:aws:iam::103050589342:role/iam_for_lambda"
   handler = "aws.list"
-  source_code_hash = "${base64sha256(file(pathexpand("lambda_package.zip")))}"
+//  source_code_hash = "${base64sha256(file(pathexpand("lambda_package.zip")))}"
   runtime = "python3.6"
   timeout = 15
 }
@@ -45,7 +45,7 @@ resource "aws_lambda_function" "add_order_lambda" {
   function_name = "orders_add"
   role = "arn:aws:iam::103050589342:role/iam_for_lambda"
   handler = "aws.add"
-  source_code_hash = "${base64sha256(file(pathexpand("lambda_package.zip")))}"
+//  source_code_hash = "${base64sha256(file(pathexpand("lambda_package.zip")))}"
   runtime = "python3.6"
   timeout = 15
 }
@@ -55,7 +55,7 @@ resource "aws_lambda_function" "order_created_lambda" {
   function_name = "order_created"
   role = "arn:aws:iam::103050589342:role/iam_for_lambda"
   handler = "aws.order_created"
-  source_code_hash = "${base64sha256(file(pathexpand("lambda_package.zip")))}"
+//  source_code_hash = "${base64sha256(file(pathexpand("lambda_package.zip")))}"
   runtime = "python3.6"
   timeout = 15
 }
