@@ -32,3 +32,9 @@ def add(event, context=None):
     print(event)
     print(context)
     return response(OrderApi(api_context(event, context)).add())
+
+
+def order_created(event, context=None):
+    print(event)
+    print(context)
+    return response(OrderApi(api_context(event, context)).order_created())

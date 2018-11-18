@@ -50,6 +50,24 @@ resource "aws_lambda_function" "add_order_lambda" {
   timeout = 15
 }
 
+resource "aws_lambda_function" "order_created_lambda" {
+  filename = "${pathexpand("lambda_package.zip")}"
+  function_name = "order_created"
+  role = "arn:aws:iam::103050589342:role/iam_for_lambda"
+  handler = "aws.order_created"
+  source_code_hash = "${base64sha256(file(pathexpand("lambda_package.zip")))}"
+  runtime = "python3.6"
+  timeout = 15
+}
+
+resource "aws_lambda_event_source_mapping" "job_schedule_event_source_mapping" {
+  starting_position = "LATEST"
+  batch_size = 1
+  event_source_arn = "${aws_dynamodb_table.orders_dynamo_table.stream_arn}"
+  enabled = true
+  function_name = "${aws_lambda_function.order_created_lambda.arn}"
+}
+
 resource "aws_api_gateway_rest_api" "order_api" {
   name = "order_api"
   description = "Order API"

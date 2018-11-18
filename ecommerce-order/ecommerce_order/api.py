@@ -1,4 +1,3 @@
-import json
 from functools import wraps
 
 from ecommerce_order import make_order
@@ -44,6 +43,12 @@ class OrderApi:
 
     @handle_request()
     def add(self):
-        shoopingcart = from_json(self.context['body'])
-        print(f'Saving shopping cart {shoopingcart}')
-        return OrderService().add(make_order(**shoopingcart))
+        order = from_json(self.context['body'])
+        print(f'Saving order {order}')
+        return OrderService().add(make_order(**order))
+
+    @handle_request()
+    def order_created(self):
+        order = from_json(self.context['body'])
+        print(f'Order created {order}')
+        return 'ok'  # OrderService().update(make_order(**order))

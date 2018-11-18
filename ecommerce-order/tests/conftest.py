@@ -11,6 +11,7 @@ def order_valid(mock_ddb_table):
         "items": [{
             "product_id": "67689cbd-f560-4556-bf69-f630d58d00b1",
             "name": "Headset",
+            "count": 2,
             "category": "Electronics",
             "price": 160}]
     }
