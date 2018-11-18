@@ -15,12 +15,14 @@ class TestOrderApi:
         assert "1" == orders[0]['user_id']
         assert '200' == response['status_code']
 
-    def test_order_add(self, order_valid):
-        response = OrderApi({'body': to_json(order_valid)}).add()
+    def test_order_add(self, order_new):
+        response = OrderApi({'body': to_json(order_new)}).add()
         args_list = boto3.resource('dynamodb').Table('orders').put_item.call_args_list
         args, kwargs = args_list[0]
         order = json.loads(response['body'])
         print(order)
         assert "1" == kwargs['Item']['user_id']
         assert "1" == order['user_id']
+        assert 320 == order['items'][0]['total']
+        assert 320 == order['total']
         assert '200' == response['status_code']

@@ -16,6 +16,19 @@ def order_valid(mock_ddb_table):
     }
 
 
+@pytest.fixture()
+def order_new(mock_ddb_table):
+    yield {
+        "user_id": "1",
+        "items": [{
+            "product_id": "67689cbd-f560-4556-bf69-f630d58d00b1",
+            "name": "Headset",
+            "category": "Electronics",
+            "count": 2,
+            "price": 160}]
+    }
+
+
 @pytest.fixture(scope='session')
 def mock_ddb_table():
     with mock.patch('boto3.resource'):

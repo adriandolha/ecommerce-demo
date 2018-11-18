@@ -4,11 +4,15 @@ class Order:
         self.status = status
         self.user_id = user_id
         self.items = items
+        for item in items:
+            item['total'] = item['price'] * item['count']
+        self.total = sum([item['price'] * item['count'] for item in items])
 
     def to_json(self):
         return {
             'order_id': self.order_id,
             'user_id': self.user_id,
             'items': self.items,
-            'status': self.status
+            'status': self.status,
+            'total': self.total
         }
