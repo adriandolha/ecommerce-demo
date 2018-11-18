@@ -20,4 +20,9 @@ class TestOrderApi:
         assert '200' == response['statusCode']
 
     def test_order_created(self, order_created_event):
+        args_list = boto3.resource('dynamodb').Table('orders').put_item.call_args_list
         aws.order_created(order_created_event)
+        args, kwargs = args_list[0]
+        assert "1" == kwargs['Item']['user_id']
+        assert 320 == kwargs['Item']['total']
+        assert 320 == kwargs['Item']['items'][0]['total']
