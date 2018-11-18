@@ -84,4 +84,27 @@ Notice the order status is **CREATED**.
 
 ### View Orders
 Once the order is created, dynamodb streams trigger the order update lambda function which updates the status to **COMPLETED**.
+
+You can view order almost immediately after the order is created:
 GET /orders
+Response:
+```
+[
+  {
+    "order_id": "62e3802a-406e-4af0-a2de-bee98ed27c07",
+    "user_id": "1",
+    "items": [
+      {
+        "name": "Headset",
+        "count": "2",
+        "total": 320,
+        "category": "Electronics",
+        "price": "160",
+        "product_id": "67689cbd-f560-4556-bf69-f630d58d00b1"
+      }
+    ],
+    "status": "COMPLETED",
+    "total": 320
+  }
+]
+```
