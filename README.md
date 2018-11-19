@@ -1,8 +1,8 @@
 # ecommerce-demo
 E-Commerce application demo. The application enables users to buy products online.
 ## Use cases
-- select product
-- add product to shooping cart
+- view products
+- add products to shooping cart
 - place order
 - view order status
 ## Install
@@ -33,7 +33,7 @@ Response:
   }
 ]
 ```
-### Add Product to Shopping Cart
+### Add Products to Shopping Cart
 POST /shoppingcarts
 ```
 {
