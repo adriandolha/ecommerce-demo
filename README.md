@@ -1,5 +1,5 @@
 # ecommerce-demo
-E-Commerce application demo. The application enables users to buy products online.
+E-Commerce serverless application demo. The application enables users to buy products online.
 ## Use cases
 - view products
 - add products to shooping cart
